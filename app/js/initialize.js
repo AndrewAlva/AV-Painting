@@ -1,6 +1,6 @@
 // General vars
 var Sketches = [];
-var currentSketch = 0;
+var currentSketch = 1;
 
 // Canvas size vars
 var canvasContainer = document.getElementById('canvas-container');
@@ -76,19 +76,20 @@ function draw() {
 
 function keyPressed() {
 	// Switch sketches
-	if (keyCode == 32) {
-		// Go forward and reset when limit reached
-		currentSketch ++;
-		if (currentSketch >= Sketches.length) {
-			currentSketch = 0;
-		}
+	// if (keyCode == 32) {
+	// 	// Go forward and reset when limit reached
+	// 	currentSketch ++;
+	// 	if (currentSketch >= Sketches.length) {
+	// 		currentSketch = 0;
+	// 	}
 
-		console.log('currentSketch: ' + currentSketch);
-	}
+	// 	console.log('currentSketch: ' + currentSketch);
+	// }
 
 
 	// Sketch 1: Spiral
-	else if (keyCode == 38) {
+	// else if (keyCode == 38) {
+	if (keyCode == 38) {
 		// UP
 		spiral_turns+= 0.5;
 	} else if (keyCode == 40) {
@@ -119,7 +120,6 @@ window.onload = function() {
 	console.log("Page fully loaded.");
 	console.log("Initialize.js");
 
-	document.querySelector('.artist-logo').classList.add('show');
 	document.querySelector('.title-container').classList.add('show');
 	document.querySelector('.artwork-img').classList.add('show');
 	

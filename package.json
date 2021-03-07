@@ -10,9 +10,9 @@
 		"build": "brunch build --production"
 	},
 	"devDependencies": {
-		"auto-reload-brunch": "^2.1.0",
-		"brunch": "^3.0.0",
-		"jade-brunch": "^1.8.1",
+		"auto-reload-brunch": "^2.7.1",
+		"brunch": "^4.0.0",
+		"jade-brunch": "^2.8.0",
 		"sass-brunch": "^3.0.0",
 		"uglify-js-brunch": "^2.10.0"
 	}

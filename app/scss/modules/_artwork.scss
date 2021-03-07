@@ -113,14 +113,6 @@
 		width: 80.7%;
 		height: 80.7%;
 		overflow: hidden;
-		-webkit-clip-path: inset(65% 50% 35% 50% round 100%);
-		clip-path: inset(65% 50% 35% 50% round 100%);
-
-		// animation-duration: 3.5s;
-		// animation-timing-function: cubic-bezier(0.8, 0, 0.2, 1);
-		// animation-delay: 2.5s;
-		// animation-iteration-count: 1;
-		// animation-fill-mode: forwards;
 
 		#canvas-container{
 			position: absolute;
@@ -128,8 +120,8 @@
 			top: 0; left: 0;
 			width: 100%;
 			height: 100%;
-			background-color: #f60;
-			opacity: 0;
+			// background-color: #f60;
+			// opacity: 0;
 
 			canvas{
 				position: relative;
@@ -146,11 +138,6 @@
 			height: 100%;
 		}
 
-		.mask{
-			opacity: 0.5;
-			@include scale(1.15, 1.15);
-		}
-
 		img{
 			position: relative;
 			width: 100%;
@@ -158,26 +145,10 @@
 		}
 
 		&.show{
-			@include trans-delay(2.5s, 4s);
-			-webkit-clip-path: inset(0% 0% 0% 0% round 0%);
-			clip-path: inset(0% 0% 0% 0% round 0%);
-			// animation-name: clip_mask;
-
-			.mask{
-				opacity: 1;
-				// First position
-				// @include trans-dual-delay(transform, 2.8s, 4s,   opacity, 0s, 6.8s);
-				// @include scale(1,1);
-				
-				// zoom position for av stuff
-				@include trans-delay(2.5s, 2.5s);
-				transform: scale(2) translate3d(2.5%, -14%, 0px);
-			}
-
 			// detonate this when music starts
 			#canvas-container{
 				@include trans-delay(3s, 6s);
-				opacity: 1;
+				// opacity: 0.5;
 			}
 		}
 	}
@@ -207,24 +178,29 @@
 				line-height: 22vh;
 				overflow: hidden;
 
-				// R
-				&:nth-child(3){
+				// O
+				&:nth-child(2){
 					margin-left: -.02em;
 				}
 
-				// T
-				&:nth-child(4){
-					margin-left: -.12em;
+				// V
+				&:nth-child(3){
+					margin-left: -.08em;
 				}
 
-				// A
+				// E
+				&:nth-child(4){
+					// margin-left: -.12em;
+				}
+
+				// R
 				&:nth-child(5){
-					margin-left: -.16em;
+					margin-left: -.03em;
 				}
 
 				// S
-				&:nth-child(7){
-					margin-left: -.02em;
+				&:nth-child(6){
+					margin-left: -.05em;
 				}
 			}
 

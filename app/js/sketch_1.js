@@ -1,29 +1,37 @@
 // Sketch 1 vars
 var diameter = 30;
-var squaresContainer = [];
+var heartsContainer = [];
 
 
 // Sketch 1
 var Sketch_1 = {
+	cFrame: 0,
+	time: 0,
 	setShapes: function() {
 		for (var i = 0; i < samples; i ++) {
-			var x = random(width);
+			// var x = random(width);
+			// var y = random(height);
+			
+			var x = (width/samples)*i;
 			var y = random(height);
-			// var shape = new Shape(x, y);
-			var shape = new Shape(0, 0);
-			squaresContainer.push(shape);
+
+			var shape = new Shape(x, y);
+			// var shape = new Shape(0, 0);
+			
+			heartsContainer.push(shape);
 		}
 	},
 
 	draw: function() {
 		var _self = this;
 
+		_self.cFrame+= 0.05;
 		/* CLEANER */
 		background(0, 20);
 		// Quitamos el contorno
 		noStroke();
 		// Actualizamos el análisis de muestreo
-		var time = millis() * 0.003;
+		_self.time = millis() * 0.0003;
 		var spectrum = fft.analyze();
 
 		_self.brush(spectrum);
@@ -33,16 +41,18 @@ var Sketch_1 = {
 		var _self = this;
 
 		for (var i = 0; i < samples; i ++) {
-			var size = map(audio_spectrum[i], 0, 255, 10, 80);
-			var shape = squaresContainer[i];
+			var size = map(audio_spectrum[i], 0, 255, 12, 120);
+			var shape = heartsContainer[i];
 
-			var vel_x = sin(map(audio_spectrum[i], 0, 255, -5, 5)) * 50;
-			var vel_y = sin(map(audio_spectrum[i], 0, 255, -1, 1)) * 50;
+			// var vel_x = cos(map(audio_spectrum[i], 0, 255, -2, 2)) * cos(_self.cFrame) * 50;
+			var vel_x = cos(map(audio_spectrum[i], 0, 255, -2, 2)) * 20 * cos(_self.cFrame) * 2;
+			// var vel_y = sin(map(audio_spectrum[i], 0, 255, -2, -3)) * 100;
+			var vel_y = -50;
 			var pos_x = shape.x + vel_x;
 			var pos_y = shape.y + vel_y;
 
-			shape.x += (shape.x - pos_x) * cof;
-			shape.y += (shape.y - pos_y) * cof;
+			shape.x -= ((shape.x - pos_x) * cof) / 2;
+			shape.y -= ((shape.y - pos_y) * cof) / 4;
 
 			if (shape.x > width) {
 				shape.x = 0;
@@ -55,8 +65,17 @@ var Sketch_1 = {
 			}
 
 			stroke(audio_spectrum[i], 255, 255 );
-			rect(shape.x, shape.y, size, size);
+			// rect(shape.x, shape.y, size, size);
+			_self.heart(shape.x, shape.y, size);
 		}
+	},
+
+	heart: function heart(x, y, size) {
+		beginShape();
+		vertex(x, y);
+		bezierVertex(x - size / 2, y - size / 2, x - size, y + size / 3, x, y + size);
+		bezierVertex(x + size, y + size / 3, x + size / 2, y - size / 2, x, y);
+		endShape(CLOSE);
 	}
 }
 
