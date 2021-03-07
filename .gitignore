@@ -1,3 +1,28 @@
+# Brunch output files
+/public
+
+# Property files
+/app/assets/music/*.mp3
+/app/assets/fonts/*.ttf
+/app/assets/fonts/*.otf
+/app/assets/fonts/*.woff
+/app/assets/fonts/*.woff2
+
+# Brunch folder for temporary files.
+tmp/
+
+# OS or Editor folders
+.DS_Store
+.cache
+.project
+.settings
+.tmproj
+nbproject
+Thumbs.db
+
+# npm package-lock
+package-lock.json
+
 # Logs
 logs
 *.log
