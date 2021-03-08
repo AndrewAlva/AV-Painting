@@ -8,6 +8,7 @@
 // Sketch 1 vars
 var diameter = 30;
 var heartsContainer = [];
+var heartTrace = 0;
 var lifeSpan = 20;
 var lifeSpeed = 0.1;
 
@@ -53,13 +54,49 @@ var Sketch_1 = {
 		var _self = this;
 
 		for (var i = 0; i < heartsContainer.length; i ++) {
-			var size = map(audio_spectrum[i], 0, 255, 20, 40);
+			// var size = map(audio_spectrum[i], 0, 255, 20, 40);
+			var size = map(audio_spectrum[i], 0, 255, 5, 50);
 			var shape = heartsContainer[i];
 
+			// for (let j = 1; j < heartTrace + 1; j++) {
+			// 	let hCopy = new Shape(shape.x, shape.y, shape.color);
+			// 	let customFrame = _self.cFrame + (j*10);
+			// 	hCopy.y += 10 * j;
+
+			// 	var vel_x = cos(map(audio_spectrum[3], 0, 255, -2, 2)) * 100 * cos(customFrame * 0.1 );
+			// 	// var vel_y = -20;
+			// 	var vel_y = sin(map(audio_spectrum[3], 0, 255, -2, -3)) * 100;
+			// 	var pos_x = hCopy.x + vel_x;
+			// 	var pos_y = hCopy.y + vel_y;
+
+			// 	hCopy.x -= ((hCopy.x - pos_x) * cof) / 2;
+			// 	hCopy.y -= ((hCopy.y - pos_y) * cof) / 4;
+
+			// 	if (hCopy.x > width) {
+			// 		hCopy.x = 0;
+			// 	} else if (hCopy.x < 0) {
+			// 		hCopy.x = width;
+			// 	} else if (hCopy.y > height) {
+			// 		hCopy.y = 0;
+			// 	} else if (hCopy.y < 0) {
+			// 		hCopy.y = height;
+			// 	}
+
+			// 	let color = get(hCopy.x, hCopy.y);
+			// 	// let color = [255,0,0];
+			// 	let mapLife = map(j, 1, heartTrace, 0, lifeSpan);
+			// 	color[3] = map(mapLife, 0, lifeSpan, 0, 255);
+			// 	fill(color);
+			// 	// fill([255,180,180]);
+
+			// 	_self.heart(hCopy.x, hCopy.y, size);
+			// }
+
+			
 			// var vel_x = cos(map(audio_spectrum[i], 0, 255, -2, 2)) * cos(_self.cFrame) * 50;
-			var vel_x = cos(map(audio_spectrum[i], 0, 255, -2, 2)) * 20 * cos(_self.cFrame) * 2;
-			// var vel_y = sin(map(audio_spectrum[i], 0, 255, -2, -3)) * 100;
-			var vel_y = -50;
+			var vel_x = cos(map(audio_spectrum[i], 0, 255, -2, 2)) * 100 * cos(_self.cFrame * 0.05 );
+			var vel_y = sin(map(audio_spectrum[i], 0, 255, -10, -1)) * 100;
+			// var vel_y = -50;
 			var pos_x = shape.x + vel_x;
 			var pos_y = shape.y + vel_y;
 
@@ -79,12 +116,17 @@ var Sketch_1 = {
 			// stroke(audio_spectrum[i], 255, 255 );
 			// rect(shape.x, shape.y, size, size);
 
-			// fill(shape.color);
+			// fill([255,180,180]);
+				// fill(shape.color);
 			let color = get(shape.x, shape.y);
-			color[3] = map(shape.life, 0, lifeSpan, 0, 255);
+			// let color = [255,0,0];
+			// color[3] = map(shape.life, 0, lifeSpan, 0, 255);
+			color[3] = 10;
+			// color[3] = map(audio_spectrum[i], 0, 255, 10, 80);
 			fill(color);
 
 			_self.heart(shape.x, shape.y, size);
+			
 
 			shape.life -= lifeSpeed;
 			shape.color[3] = map(shape.life, 0, lifeSpan, 0, 255);

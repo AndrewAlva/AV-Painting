@@ -15,19 +15,19 @@ var halfHeight = canvasSize.y / 2;
 var song, img;
 var _smooth = 0.83; // Suavizado
 // var samples = 1024; // Número de muestras a analizar
-var samples = 16; // Número de muestras a analizar
+var samples = 128; // Número de muestras a analizar
 /* FFT: Fast Fourier Transform (Transformada rápida de Fourier) */
 var fft = new p5.FFT(_smooth, samples);
 var cFrame = 0;
-var cFrameSpeed = 0.05;
+var cFrameSpeed = 1;
 const PI2 = Math.PI * 2;
 var cof = 0.1;
 
 
 function preload() {
-	// song = loadSound('./music/beer.mp3');
-	song = loadSound('./music/Just-Hold-On.mp3');
-	img = loadImage('./img/portals-artwork-tiny-b.jpg');
+	// song = loadSound('./music/Just-Hold-On.mp3');
+	song = loadSound('./music/roses.mp3');
+	img = loadImage('./img/sakura.jpg');
 }
 
 function setCanvasSize() {
