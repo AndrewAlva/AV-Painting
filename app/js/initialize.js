@@ -12,13 +12,14 @@ var halfWidth = canvasSize.x / 2;
 var halfHeight = canvasSize.y / 2;
 
 // p5 vars
-var song;
+var song, img;
 var _smooth = 0.83; // Suavizado
 // var samples = 1024; // Número de muestras a analizar
-var samples = 64; // Número de muestras a analizar
+var samples = 16; // Número de muestras a analizar
 /* FFT: Fast Fourier Transform (Transformada rápida de Fourier) */
 var fft = new p5.FFT(_smooth, samples);
 var cFrame = 0;
+var cFrameSpeed = 0.05;
 const PI2 = Math.PI * 2;
 var cof = 0.1;
 
@@ -26,6 +27,7 @@ var cof = 0.1;
 function preload() {
 	// song = loadSound('./music/beer.mp3');
 	song = loadSound('./music/Just-Hold-On.mp3');
+	img = loadImage('./img/portals-artwork-tiny-b.jpg');
 }
 
 function setCanvasSize() {
@@ -37,10 +39,11 @@ function setup() {
 	setCanvasSize();
 	var canvas = createCanvas(canvasSize.x, canvasSize.y);
 	canvas.parent('canvas-container');
-	colorMode(HSB, 255);
+	// colorMode(HSB, 255);
 
 	canvas.mousePressed(playSong);
 	fft.setInput(song);
+	image(img, 0, 0, canvasSize.x, canvasSize.y);
 
 	// Sketch 1 setup
 	noFill();
@@ -58,14 +61,18 @@ function windowResized() {
 	halfWidth = canvasSize.x / 2;
 	halfHeight = canvasSize.y / 2;
 	resizeCanvas(canvasSize.x, canvasSize.y);
-	background(0);
+	
+	// background(0);
+	image(img, 0, 0, canvasSize.x, canvasSize.y);
 }
 
 function playSong() {
 	if (song.isPlaying()) {
 		song.pause();
+		blockDraw();
 	} else {
 		song.loop();
+		unblockDraw();
 	}
 }
 
@@ -98,6 +105,14 @@ function keyPressed() {
 	}
 
 	spiral_factor = 1.4 * spiral_turns;
+}
+
+function blockDraw() {
+	cFrameSpeed = 0;
+}
+
+function unblockDraw() {
+	cFrameSpeed = 0.05;
 }
 
 
