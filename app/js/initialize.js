@@ -15,7 +15,7 @@ var halfHeight = canvasSize.y / 2;
 var song, img;
 var _smooth = 0.83; // Suavizado
 // var samples = 1024; // Número de muestras a analizar
-var samples = 128; // Número de muestras a analizar
+var samples = 1024; // Número de muestras a analizar
 /* FFT: Fast Fourier Transform (Transformada rápida de Fourier) */
 var fft = new p5.FFT(_smooth, samples);
 var cFrame = 0;

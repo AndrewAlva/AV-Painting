@@ -55,7 +55,8 @@ var Sketch_1 = {
 
 		for (var i = 0; i < heartsContainer.length; i ++) {
 			// var size = map(audio_spectrum[i], 0, 255, 20, 40);
-			var size = map(audio_spectrum[i], 0, 255, 5, 50);
+			// var size = map(audio_spectrum[i], 0, 255, 5, 100);
+			var size = map(audio_spectrum[parseInt(samples*.2)], 0, 255, 10, 180);
 			var shape = heartsContainer[i];
 
 			// for (let j = 1; j < heartTrace + 1; j++) {
@@ -118,11 +119,11 @@ var Sketch_1 = {
 
 			// fill([255,180,180]);
 				// fill(shape.color);
-			let color = get(shape.x, shape.y);
+			let color = img.get(shape.x, shape.y);
 			// let color = [255,0,0];
 			// color[3] = map(shape.life, 0, lifeSpan, 0, 255);
-			color[3] = 10;
-			// color[3] = map(audio_spectrum[i], 0, 255, 10, 80);
+			// color[3] = 15;
+			color[3] = map(audio_spectrum[i], 0, 255, 10, 30);
 			fill(color);
 
 			_self.heart(shape.x, shape.y, size);
@@ -132,8 +133,8 @@ var Sketch_1 = {
 			shape.color[3] = map(shape.life, 0, lifeSpan, 0, 255);
 			if (shape.life <= 0) {
 				// heartsContainer.splice(i, 1);
-				heartsContainer[i].x = heartsContainer[i].origin.x;
-				heartsContainer[i].y = heartsContainer[i].origin.y;
+				// heartsContainer[i].x = heartsContainer[i].origin.x;
+				// heartsContainer[i].y = heartsContainer[i].origin.y;
 				heartsContainer[i].life = lifeSpan
 			}
 		}
